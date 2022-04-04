@@ -1,0 +1,28 @@
+server:
+  port: 8090
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ufaz_mafia_demo
+    username: germankomarov
+    password: password
+  jpa:
+    generate-ddl: true
+    show-sql: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: evr.reg.ser@gmail.com
+    password: bqvchhctxaaolpmt
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+com:
+  mafia:
+    registration:
+      mail:
+        enabled: false
