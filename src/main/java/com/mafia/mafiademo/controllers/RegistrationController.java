@@ -17,6 +17,7 @@ import static java.util.Collections.singletonMap;
 
 @RestController
 @RequestMapping("/registration")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class RegistrationController {
 
     @Value("${com.mafia.registration.mail.enabled}")
