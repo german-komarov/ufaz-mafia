@@ -84,8 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMe()
                 .tokenValiditySeconds(365 * 24 * 60 * 60)
                 .and()
-                .csrf().disable().cors()
-                ;
+                .csrf().disable()
+                .cors().configurationSource(corsConfigurationSource());
     }
 
 
@@ -112,6 +112,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
     }
 
+
+
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
 
     private class CustomAuthenticationFailureHandlerImpl implements AuthenticationFailureHandler {
 
