@@ -5,6 +5,7 @@ import com.mafia.mafiademo.services.UserDetailsServiceImpl;
 import com.mafia.mafiademo.util.constants.UserRole;
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -24,6 +25,9 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -80,8 +84,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMe()
                 .tokenValiditySeconds(365 * 24 * 60 * 60)
                 .and()
-                .csrf().disable()
-                .cors().configurationSource(corsConfigurationSource());
+                .csrf().disable().cors()
+                ;
     }
 
 
@@ -108,22 +112,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         }
     }
 
-
-
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("*"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH"));
-        configuration.setAllowCredentials(true);
-        //the below three lines will add the relevant CORS response headers
-        configuration.addAllowedOrigin("*");
-        configuration.addAllowedHeader("*");
-        configuration.addAllowedMethod("*");
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
 
     private class CustomAuthenticationFailureHandlerImpl implements AuthenticationFailureHandler {
 
@@ -159,3 +147,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         response.getWriter().write(json);
     }
 }
+
+

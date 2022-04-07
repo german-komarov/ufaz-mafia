@@ -9,17 +9,17 @@ spring:
   jpa:
     generate-ddl: true
     show-sql: true
-  mail:
-    host: smtp.gmail.com
-    port: 587
-    username: evr.reg.ser@gmail.com
-    password: bqvchhctxaaolpmt
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+#  mail:
+#    host: smtp.gmail.com
+#    port: 587
+#    username: evr.reg.ser@gmail.com
+#    password: bqvchhctxaaolpmt
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          starttls:
+#            enable: true
 
 com:
   mafia:
