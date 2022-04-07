@@ -76,8 +76,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .rememberMe()
                 .tokenValiditySeconds(365 * 24 * 60 * 60)
                 .and()
-                .csrf().disable()
-                .cors().disable();
+                .csrf().disable();
     }
 
 
